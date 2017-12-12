@@ -1,0 +1,15 @@
+<mat-grid-list cols="{{cols}}" rowHeight="50px">
+
+  <mat-grid-tile
+    *ngFor="let item of items"
+    [colspan]="item.cols"
+    [rowspan]="item.rows">
+    <div *ngIf="item.button; else elseBlock">
+        <button mat-button
+          (click)="item.onclick()">
+        {{item.text}}
+        </button>
+    </div>
+    <ng-template #elseBlock>{{item.text}}</ng-template>
+  </mat-grid-tile>
+</mat-grid-list>
