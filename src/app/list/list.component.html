@@ -1,0 +1,24 @@
+<ng-container
+  *ngIf="!editing; else elseBlock">
+  <mat-card
+    [ngClass]="isAddListButton ? 'list add-list' : 'list'"
+    (click)="onClick()">
+    {{name}}
+  </mat-card>
+</ng-container>
+
+<ng-template #elseBlock>
+  <mat-card>
+    <form
+      type="button"
+      (keyup.enter)="onEnter()">
+      <mat-form-field>
+        <input
+          [(ngModel)]="name"
+          [ngModelOptions]="{standalone: true}"
+          matInput
+          placeholder="{{name ? name : '+ Add List'}}">
+      </mat-form-field>
+    </form>
+  </mat-card>
+</ng-template>

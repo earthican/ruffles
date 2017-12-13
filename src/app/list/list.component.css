@@ -1,0 +1,9 @@
+mat-card {
+  width: 270px;
+}
+
+.add-list {
+  background: slategray;
+  color: white;
+  opacity: .75;
+}
