@@ -1,9 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
+  host: {
+    '(document:click)': 'closeAddListInput($event)',
+  }
 })
 export class ListComponent implements OnInit {
 
@@ -17,7 +20,7 @@ export class ListComponent implements OnInit {
   editing = false
   onAddList = new EventEmitter<boolean>()
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -35,4 +38,10 @@ export class ListComponent implements OnInit {
     if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
   }
 
+  closeAddListInput(event) {
+    if (event.target.contains(this.elementRef.nativeElement)) {
+      this.editing = false;
+      if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
+    }
+  }
 }
