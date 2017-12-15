@@ -14,6 +14,7 @@
       (keyup.enter)="onEnter()">
       <mat-form-field>
         <input
+          [focus]="onAddList"
           [(ngModel)]="name"
           [ngModelOptions]="{standalone: true}"
           matInput

@@ -14,13 +14,15 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BoardComponent } from './board/board.component';
 import { ListComponent } from './list/list.component';
+import { FocusDirective } from './focus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     BoardComponent,
-    ListComponent
+    ListComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,

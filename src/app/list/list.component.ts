@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
   static readonly ADD_LIST_NAME = '+ Add List';
 
   editing = false
+  onAddList = new EventEmitter<boolean>()
 
   constructor() {
   }
