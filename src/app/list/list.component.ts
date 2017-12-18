@@ -10,10 +10,11 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@ang
 })
 export class ListComponent implements OnInit {
 
-  @Input() name: string
+  @Input() name: string = ''
   @Input() isAddListButton: boolean = false
 
   @Output() onInputEnter: EventEmitter<any> = new EventEmitter();
+  @Output() onDelete: EventEmitter<any> = new EventEmitter();
 
   static readonly ADD_LIST_NAME = '+ Add List';
 
@@ -32,10 +33,19 @@ export class ListComponent implements OnInit {
     if (this.isAddListButton) this.name = '';
   }
 
+  onMenuButtonClick(event) {
+    event.stopPropagation();
+  }
+
   onEnter() {
     this.onInputEnter.emit(this.name);
     this.editing = false;
     if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
+  }
+
+  deleteMe() {
+    console.log('need alert to confirm first')
+    this.onDelete.emit('destroy me (' + this.name + ')');
   }
 
   closeAddListInput(event) {

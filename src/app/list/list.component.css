@@ -7,3 +7,18 @@ mat-card {
   color: white;
   opacity: .75;
 }
+
+.list-name {
+  position: absolute;
+  left: 0;
+}
+
+.list-button {
+  position: absolute;
+  right: 0;
+}
+
+.delete-list-button:hover {
+  color: white;
+  background-color: rgb(244,67,54);
+}

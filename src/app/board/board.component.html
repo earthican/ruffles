@@ -10,7 +10,8 @@
 
   <app-list
     *ngFor="let list of lists"
-    [name]="list.title">
+    [name]="list.title"
+    (onDelete)="deleteList($event)">
   </app-list>
 
   <app-list id="add-list"

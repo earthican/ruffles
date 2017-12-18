@@ -30,4 +30,9 @@ export class BoardComponent implements OnInit {
       items: []
     });
   }
+
+  deleteList(event) {
+    console.log(event);
+    console.log(this.lists.indexOf(event))
+  }
 }

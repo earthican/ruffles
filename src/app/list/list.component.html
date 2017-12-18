@@ -1,9 +1,36 @@
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item>+ Add Card</button>
+  <button mat-menu-item
+    class="delete-list-button"
+    (click)="deleteMe()">
+    Delete
+  </button>
+</mat-menu>
+
 <ng-container
   *ngIf="!editing; else elseBlock">
   <mat-card
     [ngClass]="isAddListButton ? 'list add-list' : 'list'"
     (click)="onClick()">
-    {{name}}
+
+    <mat-grid-list cols="12">
+      <mat-grid-tile
+        [colspan]="10"
+        [rowspan]="1">
+        <span class="list-name">{{ name }}</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+        *ngIf="!isAddListButton"
+        [colspan]="2"
+        [rowspan]="1">
+        <button mat-icon-button
+          class="list-button"
+          [matMenuTriggerFor]="appMenu"
+          (click)="onMenuButtonClick($event)">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-card>
 </ng-container>
 
