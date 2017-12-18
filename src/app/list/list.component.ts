@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
 
   @Input() name: string = ''
   @Input() isAddListButton: boolean = false
+  @Input() id: number = -1
 
   @Output() onInputEnter: EventEmitter<any> = new EventEmitter();
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
@@ -45,7 +46,7 @@ export class ListComponent implements OnInit {
 
   deleteMe() {
     console.log('need alert to confirm first')
-    this.onDelete.emit('destroy me (' + this.name + ')');
+    this.onDelete.emit(this.id);
   }
 
   closeAddListInput(event) {

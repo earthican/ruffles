@@ -8,15 +8,19 @@ import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/cor
 export class BoardComponent implements OnInit {
   name = 'Task Board'
   lists = [{
+    id: 0,
     title: 'Todo',
     items: []
   }, {
+    id: 1,
     title: 'In Progress',
     items: []
   }, {
+    id: 2,
     title: 'Done',
     items: []
   }]
+  lastId = 2
 
   constructor() {
   }
@@ -26,13 +30,13 @@ export class BoardComponent implements OnInit {
 
   addList(listName) {
     this.lists.push({
+      id: ++this.lastId,
       title: listName,
       items: []
     });
   }
 
   deleteList(event) {
-    console.log(event);
-    console.log(this.lists.indexOf(event))
+    this.lists = this.lists.filter(_ => _.id !== event);
   }
 }
