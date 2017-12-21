@@ -12,6 +12,7 @@
     *ngFor="let list of lists"
     [id]="list.id"
     [name]="list.title"
+    [cards]="list.cards"
     (onDelete)="deleteList($event)">
   </app-list>
 

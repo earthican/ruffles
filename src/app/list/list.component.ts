@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
   @Input() name: string = ''
   @Input() isAddListButton: boolean = false
   @Input() id: number = -1
+  @Input() cards: Array<Object> = []
 
   @Output() onInputEnter: EventEmitter<any> = new EventEmitter();
   @Output() onDelete: EventEmitter<any> = new EventEmitter();

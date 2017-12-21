@@ -10,15 +10,21 @@ export class BoardComponent implements OnInit {
   lists = [{
     id: 0,
     title: 'Todo',
-    items: []
+    cards: [{
+      title: 'Make Card Components editable'
+    },{
+      title: 'Finish Ruffles'
+    }]
   }, {
     id: 1,
     title: 'In Progress',
-    items: []
+    cards: [{
+      title: 'Create Card Components'
+    }]
   }, {
     id: 2,
     title: 'Done',
-    items: []
+    cards: []
   }]
   lastId = 2
 

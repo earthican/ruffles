@@ -10,10 +10,10 @@
 <ng-container
   *ngIf="!editing; else elseBlock">
   <mat-card
+    class="list"
     [ngClass]="isAddListButton ? 'list add-list' : 'list'"
     (click)="onClick()">
-
-    <mat-grid-list cols="12">
+    <mat-grid-list cols="12" class="list-title">
       <mat-grid-tile
         [colspan]="10"
         [rowspan]="1">
@@ -31,6 +31,13 @@
         </button>
       </mat-grid-tile>
     </mat-grid-list>
+
+    <app-card
+      *ngFor="let card of cards"
+      [title]="card.title">
+    </app-card>
+
+
   </mat-card>
 </ng-container>
 
