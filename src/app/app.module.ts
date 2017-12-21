@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { DragulaModule } from 'ng2-dragula';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -39,7 +40,8 @@ import { CardComponent } from './card/card.component';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatListModule
+    MatListModule,
+    DragulaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

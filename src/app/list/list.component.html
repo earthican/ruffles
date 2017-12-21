@@ -33,10 +33,16 @@
       </mat-grid-tile>
     </mat-grid-list>
 
-    <app-card
-      *ngFor="let card of cards"
-      [title]="card.title">
-    </app-card>
+    <div
+      *ngIf="!isAddListButton"
+      class="bag-one"
+      [dragula]='"bag-one"'
+      [dragulaModel]='cards'>
+      <app-card
+        *ngFor="let card of cards"
+        [title]="card.title">
+      </app-card>
+    </div>
 
 
   </mat-card>

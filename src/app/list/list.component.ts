@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-list',
@@ -19,6 +20,7 @@ export class ListComponent implements OnInit {
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
 
   static readonly ADD_LIST_NAME = '+ Add List';
+  static readonly LIST_TITLE_CLASS = 'list-title'
 
   editing = false
   onAddList = new EventEmitter<boolean>()
@@ -59,7 +61,7 @@ export class ListComponent implements OnInit {
       return classList && classList.join(' ');
     }).reduce((a,b) => a.concat(b), []);
 
-    if (!targetClassesList.includes('list-title')) {
+    if (!targetClassesList.includes(ListComponent.LIST_TITLE_CLASS)) {
       this.editing = false;
       if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
     }
