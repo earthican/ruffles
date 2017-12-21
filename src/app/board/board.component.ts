@@ -38,7 +38,7 @@ export class BoardComponent implements OnInit {
     this.lists.push({
       id: ++this.lastId,
       title: listName,
-      items: []
+      cards: []
     });
   }
 

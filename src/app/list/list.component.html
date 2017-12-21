@@ -17,7 +17,8 @@
       <mat-grid-tile
         [colspan]="10"
         [rowspan]="1">
-        <span class="list-name">{{ name }}</span>
+        <span *ngIf="isAddListButton; else bold" class="list-name">{{ name }}</span>
+        <ng-template #bold><span class="list-name"><strong>{{ name }}</strong></span></ng-template>
       </mat-grid-tile>
       <mat-grid-tile
         *ngIf="!isAddListButton"
