@@ -51,7 +51,15 @@ export class ListComponent implements OnInit {
   }
 
   closeAddListInput(event) {
-    if (event.target.contains(this.elementRef.nativeElement)) {
+    const targetClassesList = Object.values(event.path).map(path => {
+      if (path && path.classList)
+        return path.classList.value.split(' ');
+      return null;
+    }).filter(classList => {
+      return classList && classList.join(' ');
+    }).reduce((a,b) => a.concat(b), []);
+
+    if (!targetClassesList.includes('list-title')) {
       this.editing = false;
       if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
     }
