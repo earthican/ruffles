@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DragulaModule } from 'ng2-dragula';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { BoardComponent } from './board/board.component';
 import { ListComponent } from './list/list.component';
 import { FocusDirective } from './focus.directive';
 import { CardComponent } from './card/card.component';
+import { CardDialogComponent } from './card-dialog/card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { CardComponent } from './card/card.component';
     BoardComponent,
     ListComponent,
     FocusDirective,
-    CardComponent
+    CardComponent,
+    CardDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +44,13 @@ import { CardComponent } from './card/card.component';
     MatInputModule,
     MatFormFieldModule,
     MatListModule,
+    MatDialogModule,
     DragulaModule
   ],
   providers: [],
+  entryComponents: [
+    CardDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
