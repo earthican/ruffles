@@ -11,7 +11,8 @@ export class BoardComponent implements OnInit {
     id: 0,
     title: 'Todo',
     cards: [{
-      title: 'Make Card Components editable'
+      title: 'Make Card Components editable',
+      description: 'We should be able to display and edit this text.'
     },{
       title: 'Finish Ruffles'
     }]

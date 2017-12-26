@@ -1,0 +1,15 @@
+.card-dialog-title-form {
+  width: 100%;
+}
+
+.card-dialog-title {
+  font-weight: bold;
+}
+
+.card-description {
+  min-height: 50px;
+}
+
+.description-input {
+  width: 100%;
+}

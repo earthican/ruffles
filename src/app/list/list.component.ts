@@ -66,4 +66,8 @@ export class ListComponent implements OnInit {
       if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
     }
   }
+
+  updateCardContent(event, card) {
+    card.title = event.title;
+  }
 }

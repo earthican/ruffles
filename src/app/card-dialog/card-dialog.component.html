@@ -1,3 +1,52 @@
-<p>
-  card-dialog works!
-</p>
+<ng-container
+  *ngIf="!editingTitle; else editTitleBlock">
+  <h1 mat-dialog-title
+    (click)="editingTitle = true">
+    {{ data.card.title }}
+  </h1>
+</ng-container>
+
+<ng-template #editTitleBlock>
+  <form
+    (keyup.enter)="editingTitle = false">
+    <mat-form-field
+      class="card-dialog-title-form">
+      <input matInput
+        class="card-dialog-title"
+        [(ngModel)]="data.card.title"
+        [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </form>
+</ng-template>
+
+<ng-container
+  *ngIf="!editingDescription; else editDescriptionBlock">
+  <mat-dialog-content
+  class="card-description"
+  (click)="editDescription(data.card)">
+    {{ data.card.description }}
+  </mat-dialog-content>
+</ng-container>
+
+<ng-template #editDescriptionBlock>
+  <mat-dialog-content
+    class="card-description">
+    <form>
+      <mat-form-field class="description-input">
+        <textarea matInput
+          [(ngModel)]="data.card.description"
+          [ngModelOptions]="{standalone: true}">
+        </textarea>
+      </mat-form-field>
+      <button mat-button
+        (click)="cancelDescriptionEdits(data.card)">
+        Cancel
+      </button>
+      <button mat-button
+        (click)="editingDescription = false">
+        Ok
+      </button>
+    </form>
+  </mat-dialog-content>
+</ng-template>
+

@@ -10,24 +10,18 @@ import { CardDialogComponent } from '../card-dialog/card-dialog.component';
 })
 export class CardComponent implements OnInit {
 
-  @Input() title: string;
+  @Input() cardModel: any;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  editCard() {
-    console.log('editCard')
+  openCardDialog() {
     let dialogRef = this.dialog.open(CardDialogComponent, {
-      width: '250px',
-      data: { title: this.title }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.title = result;
+      width: '85vw',
+      height: '80vh',
+      data: { card: this.cardModel }
     });
   }
-
 }
