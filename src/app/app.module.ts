@@ -20,6 +20,7 @@ import { ListComponent } from './list/list.component';
 import { FocusDirective } from './focus.directive';
 import { CardComponent } from './card/card.component';
 import { CardDialogComponent } from './card-dialog/card-dialog.component';
+import { ClickService } from './click.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import { CardDialogComponent } from './card-dialog/card-dialog.component';
     MatDialogModule,
     DragulaModule
   ],
-  providers: [],
+  providers: [
+    ClickService
+  ],
   entryComponents: [
     CardDialogComponent
   ],

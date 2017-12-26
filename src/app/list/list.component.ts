@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { ClickService } from '../click.service';
 import { DragulaService } from 'ng2-dragula';
 
 @Component({
@@ -25,7 +26,9 @@ export class ListComponent implements OnInit {
   editing = false
   onAddList = new EventEmitter<boolean>()
 
-  constructor(private elementRef: ElementRef) {
+  constructor(
+    private elementRef: ElementRef,
+    private clickService: ClickService) {
   }
 
   ngOnInit() {
@@ -53,13 +56,7 @@ export class ListComponent implements OnInit {
   }
 
   closeAddListInput(event) {
-    const targetClassesList = Object.values(event.path).map(path => {
-      if (path && path.classList)
-        return path.classList.value.split(' ');
-      return null;
-    }).filter(classList => {
-      return classList && classList.join(' ');
-    }).reduce((a,b) => a.concat(b), []);
+    const targetClassesList = this.clickService.getClassListFromMouseEvent(event);
 
     if (!targetClassesList.includes(ListComponent.LIST_TITLE_CLASS)) {
       this.editing = false;

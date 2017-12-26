@@ -1,6 +1,7 @@
 <ng-container
   *ngIf="!editingTitle; else editTitleBlock">
   <h1 mat-dialog-title
+    class="card-dialog-title"
     (click)="editingTitle = true">
     {{ data.card.title }}
   </h1>
@@ -22,7 +23,7 @@
 <ng-container
   *ngIf="!editingDescription; else editDescriptionBlock">
   <mat-dialog-content
-  class="card-description"
+  class="card-dialog-description"
   (click)="editDescription(data.card)">
     {{ data.card.description }}
   </mat-dialog-content>
@@ -30,7 +31,7 @@
 
 <ng-template #editDescriptionBlock>
   <mat-dialog-content
-    class="card-description">
+    class="card-dialog-description">
     <form>
       <mat-form-field class="description-input">
         <textarea matInput

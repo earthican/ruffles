@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter, ViewChild, HostListener } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CardComponent } from '../card/card.component';
+import { ClickService } from '../click.service';
 
 @Component({
   selector: 'app-card-dialog',
@@ -9,6 +10,9 @@ import { CardComponent } from '../card/card.component';
 })
 export class CardDialogComponent implements OnInit {
 
+  static readonly CARD_DIALOG_TITLE_CLASS = 'card-dialog-title';
+  static readonly CARD_DIALOG_DESCRIPTION_CLASS = 'card-dialog-description';
+
   editingTitle: boolean = false;
   editingDescription: boolean = false;
   cardModelRef: any;
@@ -16,6 +20,7 @@ export class CardDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CardDialogComponent>,
+    private clickService: ClickService,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.dialogRef.afterClosed().subscribe(_ => {
         if (this.editingDescription && this.lastSavedCardState) {
@@ -35,9 +40,24 @@ export class CardDialogComponent implements OnInit {
     this.editingDescription = true;
   }
 
-  cancelDescriptionEdits(cardModel) {
-    cardModel.description = this.lastSavedCardState.description;
+  cancelDescriptionEdits() {
+    this.cardModelRef.description = this.lastSavedCardState.description;
     this.editingDescription = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeEditsOnOffClick(event) {
+    const targetClassesList = this.clickService.getClassListFromMouseEvent(event);
+
+    if (!targetClassesList.includes(CardDialogComponent.CARD_DIALOG_TITLE_CLASS) &&
+      this.editingTitle) {
+      this.editingTitle = false;
+    }
+
+    if (!targetClassesList.includes(CardDialogComponent.CARD_DIALOG_DESCRIPTION_CLASS) &&
+      this.editingDescription) {
+      this.cancelDescriptionEdits();
+    }
   }
 
   private saveState(cardModel) {
