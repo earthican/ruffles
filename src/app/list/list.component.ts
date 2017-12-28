@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { ClickService } from '../click.service';
 import { DragulaService } from 'ng2-dragula';
 
@@ -27,7 +27,6 @@ export class ListComponent implements OnInit {
   onAddList = new EventEmitter<boolean>()
 
   constructor(
-    private elementRef: ElementRef,
     private clickService: ClickService) {
   }
 
@@ -48,6 +47,15 @@ export class ListComponent implements OnInit {
     this.onInputEnter.emit(this.name);
     this.editing = false;
     if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
+  }
+
+  addCard() {
+    const card = {
+      title: 'New Card',
+      description: 'Add a description!',
+      newlyAdded: true
+    }
+    this.cards.push(card);
   }
 
   deleteMe() {

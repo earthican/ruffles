@@ -17,6 +17,17 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    if (this.cardModel.newlyAdded) {
+      setTimeout(() => {
+        this.openCardDialog();
+      });
+      // this.openCardDialog(); // <-- returns ExpressionChangedAfterItHasBeenCheckedError!
+      // For more details, check out https://blog.angularindepth.com/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error-e3fd9ce7dbb4
+      delete this.cardModel.newlyAdded;
+    }
+  }
+
   openCardDialog() {
     let dialogRef = this.dialog.open(CardDialogComponent, {
       width: '85vw',
