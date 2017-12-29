@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { CardDialogComponent } from '../card-dialog/card-dialog.component';
@@ -11,6 +11,8 @@ import { CardDialogComponent } from '../card-dialog/card-dialog.component';
 export class CardComponent implements OnInit {
 
   @Input() cardModel: any;
+
+  @Output() onDelete: EventEmitter<any> = new EventEmitter();
 
   constructor(public dialog: MatDialog) { }
 

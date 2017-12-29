@@ -15,6 +15,16 @@
   padding-top: 15px;
 }
 
+.card-dialog-description.input {
+  padding-bottom: 10px;
+}
+
+.card-dialog-actions {
+  /* position: absolute;
+  bottom: 35px;
+  right: 25px; */
+}
+
 .description-input {
   width: 100%;
 }

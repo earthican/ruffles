@@ -11,15 +11,18 @@ export class BoardComponent implements OnInit {
     id: 0,
     title: 'Todo',
     cards: [{
+      id: 0,
       title: 'Make Card Components editable',
       description: 'We should be able to display and edit this text.'
     },{
+      id: 1,
       title: 'Finish Ruffles'
     }]
   }, {
     id: 1,
     title: 'In Progress',
     cards: [{
+      id: 2,
       title: 'Create Card Components'
     }]
   }, {

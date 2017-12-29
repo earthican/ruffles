@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { ClickService } from '../click.service';
+import { DataService } from '../data.service';
 import { DragulaService } from 'ng2-dragula';
 
 @Component({
@@ -15,7 +16,7 @@ export class ListComponent implements OnInit {
   @Input() name: string = ''
   @Input() isAddListButton: boolean = false
   @Input() id: number = -1
-  @Input() cards: Array<Object> = []
+  @Input() cards: Array<any> = []
 
   @Output() onInputEnter: EventEmitter<any> = new EventEmitter();
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
@@ -27,11 +28,13 @@ export class ListComponent implements OnInit {
   onAddList = new EventEmitter<boolean>()
 
   constructor(
+    private dataService: DataService,
     private clickService: ClickService) {
   }
 
   ngOnInit() {
     if (this.isAddListButton) this.name = ListComponent.ADD_LIST_NAME;
+    this.dataService.onCardDelete.subscribe(cardId => this.deleteCard(cardId));
   }
 
   onClick() {
@@ -51,6 +54,7 @@ export class ListComponent implements OnInit {
 
   addCard() {
     const card = {
+      id: new Date().getUTCMilliseconds(),
       title: 'New Card',
       description: 'Add a description!',
       newlyAdded: true
@@ -61,6 +65,15 @@ export class ListComponent implements OnInit {
   deleteMe() {
     console.log('need alert to confirm first')
     this.onDelete.emit(this.id);
+  }
+
+  deleteCard(cardId) {
+    if (cardId != null && !this.isAddListButton) {
+      const indexOfCardToDelete = this.cards.findIndex(card => card.id == cardId);
+      if (indexOfCardToDelete >= 0) {
+        const deletedCard = this.cards.splice(indexOfCardToDelete, 1);
+      }
+    }
   }
 
   closeAddListInput(event) {

@@ -43,7 +43,8 @@
       [dragulaModel]='cards'>
       <app-card
         *ngFor="let card of cards"
-        [cardModel]="card">
+        [cardModel]="card"
+        (onDelete)="deleteCard($event)">
       </app-card>
     </div>
 

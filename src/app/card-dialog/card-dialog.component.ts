@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, Input, HostListener } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CardComponent } from '../card/card.component';
+import { DataService } from '../data.service';
 import { ClickService } from '../click.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class CardDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CardDialogComponent>,
+    private dataService: DataService,
     private clickService: ClickService,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.dialogRef.afterClosed().subscribe(_ => {
@@ -43,6 +45,11 @@ export class CardDialogComponent implements OnInit {
   cancelDescriptionEdits() {
     this.cardModelRef.description = this.lastSavedCardState.description;
     this.editingDescription = false;
+  }
+
+  deleteMe() {
+    this.dataService.deleteCard(this.data.card.id);
+    this.dialogRef.close();
   }
 
   @HostListener('document:click', ['$event'])
