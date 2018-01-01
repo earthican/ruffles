@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-board',
@@ -7,35 +8,16 @@ import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/cor
 })
 export class BoardComponent implements OnInit {
   name = 'Task Board'
-  lists = [{
-    id: 0,
-    title: 'Todo',
-    cards: [{
-      id: 0,
-      title: 'Make Card Components editable',
-      description: 'We should be able to display and edit this text.'
-    },{
-      id: 1,
-      title: 'Finish Ruffles'
-    }]
-  }, {
-    id: 1,
-    title: 'In Progress',
-    cards: [{
-      id: 2,
-      title: 'Create Card Components'
-    }]
-  }, {
-    id: 2,
-    title: 'Done',
-    cards: []
-  }]
+  lists = []
   lastId = 2
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
+    this.dataService.getLists().subscribe(lists => {
+      this.lists = lists
+    });
   }
 
   addList(listName) {
