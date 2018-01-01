@@ -1,0 +1,70 @@
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item
+    (click)="addCard()">
+    + Add Card
+  </button>
+  <button mat-menu-item
+    class="delete-list-button"
+    (click)="deleteMe()">
+    Delete
+  </button>
+</mat-menu>
+
+<ng-container
+  *ngIf="!editing; else elseBlock">
+  <mat-card
+    class="list"
+    [ngClass]="isAddListButton ? 'list add-list' : 'list'"
+    (click)="onClick()">
+    <mat-grid-list cols="12" class="list-title">
+      <mat-grid-tile
+        [colspan]="10"
+        [rowspan]="1">
+        <span *ngIf="isAddListButton; else bold" class="list-name">{{ name }}</span>
+        <ng-template #bold><span class="list-name"><strong>{{ name }}</strong></span></ng-template>
+      </mat-grid-tile>
+      <mat-grid-tile
+        *ngIf="!isAddListButton"
+        [colspan]="2"
+        [rowspan]="1">
+        <button mat-icon-button
+          class="list-button"
+          [matMenuTriggerFor]="appMenu"
+          (click)="onMenuButtonClick($event)">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <div
+      *ngIf="!isAddListButton"
+      class="bag-one"
+      [dragula]='"bag-one"'
+      [dragulaModel]='cards'>
+      <app-card
+        *ngFor="let card of cards"
+        [cardModel]="card"
+        (onDelete)="deleteCard($event)">
+      </app-card>
+    </div>
+
+
+  </mat-card>
+</ng-container>
+
+<ng-template #elseBlock>
+  <mat-card>
+    <form
+      type="button"
+      (keyup.enter)="onEnter()">
+      <mat-form-field>
+        <input
+          [focus]="onAddList"
+          [(ngModel)]="name"
+          [ngModelOptions]="{standalone: true}"
+          matInput
+          placeholder="{{name ? name : '+ Add List'}}">
+      </mat-form-field>
+    </form>
+  </mat-card>
+</ng-template>

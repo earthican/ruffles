@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 50px 0 0 0;
+  background: rgb(211,47,47);
+  color: white;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+app-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+app-board {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+app-list {
+  display: inline-block;
+  padding: 0 2px 0 7px;
+  vertical-align: top;
+}

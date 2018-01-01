@@ -1,0 +1,18 @@
+* {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#title {
+  font-size: 16px;
+}
+
+mat-toolbar #title {
+  max-width: 100%;
+  text-align: center;
+  position: fixed;
+}
+
+mat-grid-list {
+  background-color: rgb(244,67,54);
+}
